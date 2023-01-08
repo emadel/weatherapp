@@ -2,6 +2,13 @@
   "name": "handelsbanken",
   "version": "0.1.0",
   "private": true,
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "lint": "eslint src",
+    "prettier": "prettier -w src 1> /dev/null"
+  },
   "dependencies": {
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
@@ -15,16 +22,14 @@
     "react-scripts": "5.0.1",
     "typescript": "^4.4.2"
   },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+  "packageManager": "yarn@3.3.1",
+  "devDependencies": {
+    "eslint": "^8.31.0",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-simple-import-sort": "^8.0.0",
+    "prettier": "^2.8.2"
   },
   "browserslist": {
     "production": [
@@ -38,5 +43,77 @@
       "last 1 safari version"
     ]
   },
-  "packageManager": "yarn@3.3.1"
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest",
+      "prettier"
+    ],
+    "plugins": [
+      "prettier",
+      "simple-import-sort",
+      "import"
+    ],
+    "rules": {
+      "prettier/prettier": "error",
+      "react/prop-types": "off",
+      "react/jsx-newline": "error",
+      "react/jsx-tag-spacing": [
+        "error",
+        {
+          "beforeClosing": "never"
+        }
+      ],
+      "react/jsx-sort-props": [
+        "error",
+        {
+          "ignoreCase": true,
+          "reservedFirst": [
+            "key"
+          ]
+        }
+      ],
+      "simple-import-sort/imports": [
+        "error",
+        {
+          "groups": [
+            [
+              "^react",
+              "^@?\\w"
+            ],
+            [
+              "^\\u0000"
+            ],
+            [
+              "^\\.\\.(?!/?$)",
+              "^\\.\\./?$"
+            ],
+            [
+              "^\\./(?=.*/)(?!/?$)",
+              "^\\.(?!/?$)",
+              "^\\./?$"
+            ]
+          ]
+        }
+      ],
+      "simple-import-sort/exports": "error",
+      "import/first": "error",
+      "import/newline-after-import": "error",
+      "import/no-duplicates": "error"
+    },
+    "overrides": [
+      {
+        "files": [
+          "**/*.stories.*"
+        ],
+        "rules": {
+          "import/no-anonymous-default-export": "off"
+        }
+      }
+    ]
+  },
+  "prettier": {
+    "singleQuote": true,
+    "bracketSpacing": true
+  }
 }
