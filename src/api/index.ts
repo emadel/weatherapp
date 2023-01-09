@@ -1,4 +1,4 @@
-export * from './mappers';
+export { getCoordinates } from './mappers';
 export { useCurrentWeather } from './useCurrentWeather';
 export { useDirectGeocoding } from './useDirectGeocoding';
 export { useReverseGeocoding } from './useReverseGeocoding';

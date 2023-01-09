@@ -1,3 +1,5 @@
+import { Units } from './constants';
+
 export interface GeoLocation {
   name: string;
   state?: string;
@@ -12,21 +14,20 @@ export interface Coordinates {
   lat: string;
 }
 
-// TODO this is the raw data. Should create a model that is a bit nicer to work with, that we can map to when fetching (using actual dateTime values etc)
-export interface LocationWeather {
+export interface LocationWeatherData {
   coord: Coordinates;
 
   main: {
-    temp: string;
-    temp_max: string;
-    temp_min: string;
-    humidity: string;
+    temp: number;
+    temp_max: number;
+    temp_min: number;
+    humidity: number;
   };
 
-  weather: {
+  weather: Array<{
     main: string;
     description: string;
-  };
+  }>;
 
   visibility: number;
 
@@ -37,4 +38,28 @@ export interface LocationWeather {
   };
 
   timezone: number;
+}
+
+export interface LocationWeather {
+  units: Units;
+
+  coordinates: Coordinates;
+
+  temperature: {
+    current: number;
+    high: number;
+    low: number;
+  };
+
+  weather?: {
+    main: string;
+    description: string;
+  };
+
+  humidity: number;
+  visibility: number;
+
+  sunrise: Date;
+  sunset: Date;
+  tz: number;
 }

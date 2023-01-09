@@ -5,7 +5,9 @@ import {
   useCurrentWeather,
   useDirectGeocoding,
 } from '../../../api';
+import { Units } from '../../../api/constants';
 import type { GeoLocation } from '../../../api/types';
+import { Temperature } from '../../components';
 
 interface Props {
   location: Pick<GeoLocation, 'name' | 'state' | 'country'>;
@@ -16,19 +18,19 @@ export const Location = (props: Props) => {
 
   const { data: geoData } = useDirectGeocoding(location, {
     onError: (err) => {
-      // TODO capture for UI
+      // TODO capture in state for UI
       console.error('Failed to fetch geo location', err);
     },
   });
 
   const coordinates = getCoordinates(geoData);
 
-  const locationWeather = useCurrentWeather(
-    { coordinates, units: 'metric' },
+  const { data: weatherData } = useCurrentWeather(
+    { coordinates, units: Units.METRIC },
     {
       enabled: !!coordinates,
       onError: (err) => {
-        // TODO capture for UI
+        // TODO capture in state for UI
         console.error('Failed to fetch location weather', err);
       },
     }
@@ -41,8 +43,17 @@ export const Location = (props: Props) => {
 
   return (
     <Link to={`location?${createSearchParams(Object.entries(coordinates))}`}>
-      <>{location.name}</>
-      <>{locationWeather.data?.main.temp}C</>
+      <span>{location.name}</span>
+
+      {weatherData && (
+        <>
+          <>&nbsp;</>
+          <Temperature
+            temperature={weatherData.temperature.current}
+            units={weatherData.units}
+          />
+        </>
+      )}
     </Link>
   );
 };

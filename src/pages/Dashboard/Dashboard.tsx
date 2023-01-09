@@ -8,6 +8,8 @@ export const Dashboard = () => {
       </header>
 
       <section>
+        <h2>Locations</h2>
+
         <LocationList />
       </section>
     </div>
