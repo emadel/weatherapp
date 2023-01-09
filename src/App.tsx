@@ -1,10 +1,16 @@
 import React from 'react';
+import { Route, Routes } from 'react-router-dom';
+
+import { Dashboard } from './pages/Dashboard';
+import { LocationDetails } from './pages/LocationDetails';
 
 function App() {
   return (
-    <div>
-      <header>Init app</header>
-    </div>
+    <Routes>
+      <Route element={<Dashboard />} path="/" />
+
+      <Route element={<LocationDetails />} path="/location" />
+    </Routes>
   );
 }
 
