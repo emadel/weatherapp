@@ -6,9 +6,11 @@ import styles from './PageContainer.module.css';
 interface Props extends HTMLAttributes<HTMLDivElement> {}
 
 export const PageContainer = (props: Props) => {
-  const { className, ...divProps } = props;
+  const { className, children, ...divProps } = props;
 
   return (
-    <div className={clsx(styles.container, className)} {...divProps}></div>
+    <div className={clsx(styles.container, className)} {...divProps}>
+      <div className={styles.content}>{children}</div>
+    </div>
   );
 };
