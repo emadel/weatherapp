@@ -1,11 +1,11 @@
 import { useQuery, UseQueryOptions } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 
-import { Milliseconds } from './constants';
-import { toLocationWeather } from './mappers';
-
 import { data } from '@/api/data';
 import { Coordinates, LocationWeather, Units } from '@/api/types';
+
+import { Milliseconds } from './constants';
+import { toLocationWeather } from './mappers';
 
 type Params = {
   coordinates?: Coordinates;

@@ -1,11 +1,11 @@
+import { useCurrentWeather, useReverseGeocoding } from '@/api/hooks';
+import { Units } from '@/api/types';
+
 import { BackButton } from './BackButton';
 import { Surroundings } from './Surroundings';
 import { Temperatures } from './Temperatures';
 import { useCoordinatesParams } from './useCoordinatesParams';
 import { Weather } from './Weather';
-
-import { useCurrentWeather, useReverseGeocoding } from '@/api/hooks';
-import { Units } from '@/api/types';
 
 export const LocationDetails = () => {
   const coordinates = useCoordinatesParams();
