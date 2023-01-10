@@ -4,8 +4,8 @@ import { Temperatures } from './Temperatures';
 import { useCoordinatesParams } from './useCoordinatesParams';
 import { Weather } from './Weather';
 
-import { useCurrentWeather, useReverseGeocoding } from '@/api';
-import { Units } from '@/api/constants';
+import { useCurrentWeather, useReverseGeocoding } from '@/api/hooks';
+import { Units } from '@/api/types';
 
 export const LocationDetails = () => {
   const coordinates = useCoordinatesParams();

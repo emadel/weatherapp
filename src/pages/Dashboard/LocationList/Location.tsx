@@ -1,8 +1,7 @@
 import { createSearchParams, Link } from 'react-router-dom';
 
-import { getCoordinates, useCurrentWeather, useDirectGeocoding } from '@/api';
-import { Units } from '@/api/constants';
-import type { GeoLocation } from '@/api/types';
+import { useCurrentWeather, useDirectGeocoding } from '@/api/hooks';
+import { GeoLocation, Units } from '@/api/types';
 import { Temperature } from '@/components';
 
 interface Props {
@@ -19,7 +18,7 @@ export const Location = (props: Props) => {
     },
   });
 
-  const coordinates = getCoordinates(geoData);
+  const coordinates = geoData?.coordinates;
 
   const { data: weatherData } = useCurrentWeather(
     { coordinates, units: Units.METRIC },
