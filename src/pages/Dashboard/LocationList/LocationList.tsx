@@ -1,13 +1,14 @@
+import { useLocations } from './hooks';
 import { Location } from './Location';
-import { useLocations } from './useLocations';
+import styles from './LocationList.module.css';
 
 export const LocationList = () => {
   const locations = useLocations();
 
   return (
-    <ul>
+    <ul className={styles.list}>
       {locations.map((location) => (
-        <li>
+        <li className={styles.listItem}>
           <Location location={location} />
         </li>
       ))}

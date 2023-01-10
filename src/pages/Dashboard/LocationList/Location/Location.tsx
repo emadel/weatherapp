@@ -4,6 +4,8 @@ import { useCurrentWeather, useDirectGeocoding } from '@/api/hooks';
 import { GeoLocation, Units } from '@/api/types';
 import { Temperature } from '@/components';
 
+import styles from './Location.module.css';
+
 interface Props {
   location: Pick<GeoLocation, 'name' | 'state' | 'country'>;
 }
@@ -37,7 +39,10 @@ export const Location = (props: Props) => {
   }
 
   return (
-    <Link to={`location?${createSearchParams(Object.entries(coordinates))}`}>
+    <Link
+      className={styles.location}
+      to={`location?${createSearchParams(Object.entries(coordinates))}`}
+    >
       <span>{location.name}</span>
 
       {weatherData && (
