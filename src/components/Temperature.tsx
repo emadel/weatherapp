@@ -1,6 +1,6 @@
 import { HTMLAttributes } from 'react';
 
-import { Units } from '../../api/constants';
+import { Units } from '@/api/constants';
 
 const UnitSymbol: Record<Units, string> = {
   [Units.METRIC]: 'C',

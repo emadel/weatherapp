@@ -1,13 +1,9 @@
 import { createSearchParams, Link } from 'react-router-dom';
 
-import {
-  getCoordinates,
-  useCurrentWeather,
-  useDirectGeocoding,
-} from '../../../api';
-import { Units } from '../../../api/constants';
-import type { GeoLocation } from '../../../api/types';
-import { Temperature } from '../../components';
+import { getCoordinates, useCurrentWeather, useDirectGeocoding } from '@/api';
+import { Units } from '@/api/constants';
+import type { GeoLocation } from '@/api/types';
+import { Temperature } from '@/components';
 
 interface Props {
   location: Pick<GeoLocation, 'name' | 'state' | 'country'>;

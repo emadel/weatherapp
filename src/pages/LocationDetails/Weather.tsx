@@ -1,6 +1,6 @@
 import { HTMLAttributes } from 'react';
 
-import { LocationWeather } from '../../api/types';
+import { LocationWeather } from '@/api/types';
 
 interface Props extends HTMLAttributes<HTMLDListElement> {
   weather: LocationWeather['weather'];
