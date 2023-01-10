@@ -1,21 +1,16 @@
 import { fromUnixTime } from 'date-fns';
 
-import { Units } from './constants';
-import {
-  Coordinates,
-  GeoLocation,
-  LocationWeather,
-  LocationWeatherData,
-} from './types';
+import type { LocationData, WeatherData } from '@/api/data';
+import { GeoLocation, LocationWeather, Units } from '@/api/types';
 
-export const getCoordinates = (
-  geoData?: GeoLocation
-): Coordinates | undefined => {
-  return geoData ? { lat: geoData.lat, lon: geoData.lon } : undefined;
+export const toGeoLocation = (source: LocationData): GeoLocation => {
+  const { name, state, country, local_names: localeName, lat, lon } = source;
+
+  return { name, state, country, localeName, coordinates: { lat, lon } };
 };
 
 export const toLocationWeather = (
-  source: LocationWeatherData,
+  source: WeatherData,
   opts: { units: Units }
 ): LocationWeather => {
   return {

@@ -1,7 +1,7 @@
 import { HTMLAttributes } from 'react';
 import { format } from 'date-fns';
 
-import { LocationWeather } from '../../api/types';
+import { LocationWeather } from '@/api/types';
 
 interface Props extends HTMLAttributes<HTMLDListElement> {
   weatherData: LocationWeather;

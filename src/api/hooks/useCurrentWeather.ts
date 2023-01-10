@@ -1,23 +1,21 @@
 import { useQuery, UseQueryOptions } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 
-import { Milliseconds, Units } from './constants';
+import { data } from '@/api/data';
+import { Coordinates, LocationWeather, Units } from '@/api/types';
+
+import { Milliseconds } from './constants';
 import { toLocationWeather } from './mappers';
-import { LocationWeather } from './types';
-import { weatherMap } from './weatherMap';
 
 type Params = {
-  coordinates?: {
-    lat: string;
-    lon: string;
-  };
+  coordinates?: Coordinates;
   units: Units;
   language?: string;
 };
 
 type Options = UseQueryOptions<LocationWeather, AxiosError>;
 
-export const locationWeatherQueryKey = (params: Params) => {
+export const locationWeatherPath = (params: Params) => {
   const { coordinates, units } = params;
 
   if (!coordinates) {
@@ -32,10 +30,10 @@ export const useCurrentWeather = (params: Params, options: Options) => {
   const { retry, enabled, staleTime, ...otherOpts } = options;
 
   return useQuery<LocationWeather, AxiosError>(
-    [locationWeatherQueryKey(params)],
+    [locationWeatherPath(params)],
 
     async () => {
-      const response = await weatherMap.get(locationWeatherQueryKey(params));
+      const response = await data.get(locationWeatherPath(params));
       return toLocationWeather(response.data, { units: params.units });
     },
 

@@ -1,5 +1,5 @@
-import { useCurrentWeather, useReverseGeocoding } from '../../api';
-import { Units } from '../../api/constants';
+import { useCurrentWeather, useReverseGeocoding } from '@/api/hooks';
+import { Units } from '@/api/types';
 
 import { BackButton } from './BackButton';
 import { Surroundings } from './Surroundings';

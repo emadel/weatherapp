@@ -4,7 +4,7 @@ import { injectAPIKeyQueryParam } from './interceptors';
 
 const BASE_URL = 'http://api.openweathermap.org/';
 
-export const weatherMap = axios.create({
+export const data = axios.create({
   baseURL: BASE_URL,
   headers: {
     Accept: 'application/json',
@@ -12,4 +12,4 @@ export const weatherMap = axios.create({
   },
 });
 
-weatherMap.interceptors.request.use(injectAPIKeyQueryParam);
+data.interceptors.request.use(injectAPIKeyQueryParam);

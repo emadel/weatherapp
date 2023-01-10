@@ -1,12 +1,7 @@
-import { Units } from './constants';
-
-export interface GeoLocation {
-  name: string;
-  state?: string;
-  country: string;
-  local_names: Record<string, string>;
-  lat: string;
-  lon: string;
+export enum Units {
+  STANDARD = 'standard',
+  METRIC = 'metric',
+  IMPERIAL = 'imperial',
 }
 
 export interface Coordinates {
@@ -14,30 +9,14 @@ export interface Coordinates {
   lat: string;
 }
 
-export interface LocationWeatherData {
-  coord: Coordinates;
+export interface GeoLocation {
+  name: string;
+  state?: string;
+  country: string;
 
-  main: {
-    temp: number;
-    temp_max: number;
-    temp_min: number;
-    humidity: number;
-  };
+  localeName: Record<string, string>;
 
-  weather: Array<{
-    main: string;
-    description: string;
-  }>;
-
-  visibility: number;
-
-  sys: {
-    country: string;
-    sunrise: number;
-    sunset: number;
-  };
-
-  timezone: number;
+  coordinates: Coordinates;
 }
 
 export interface LocationWeather {

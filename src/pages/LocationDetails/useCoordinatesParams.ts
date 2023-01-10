@@ -1,6 +1,6 @@
 import { useLocation, useSearchParams } from 'react-router-dom';
 
-import { Coordinates } from '../../api/types';
+import { Coordinates } from '@/api/types';
 
 export const useCoordinatesParams = (): Coordinates => {
   const location = useLocation();
