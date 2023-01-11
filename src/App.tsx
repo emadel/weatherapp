@@ -1,6 +1,8 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 
+import 'normalize.css';
+
 import { Dashboard } from './pages/Dashboard';
 import { LocationDetails } from './pages/LocationDetails';
 

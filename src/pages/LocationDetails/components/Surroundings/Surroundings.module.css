@@ -1,0 +1,47 @@
+.grid {
+    display: grid;
+    /*gap: 1rem;*/
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    grid-template-areas:
+    "sunrise sunset"
+    "humidity visibility";
+}
+
+.measure {
+    display: inline-flex;
+    flex-direction: column;
+    padding: 0.5rem;
+    align-items: center;
+}
+
+.left {
+    composes: measure;
+    border-right: 1px solid black;
+}
+
+.top {
+    composes: measure;
+    border-bottom: 1px solid black;
+}
+
+.sunrise {
+    composes: left top;
+    grid-area: sunrise;
+}
+
+.sunset {
+    composes: top;
+    grid-area: sunset;
+}
+
+.humidity {
+    composes: left;
+    grid-area: humidity;
+    border-right: 1px solid black;
+}
+
+.visibility {
+    composes: measure;
+    grid-area: visibility;
+}

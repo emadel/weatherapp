@@ -1,17 +1,17 @@
+import { PageContainer, SectionContainer } from '@/components';
+
 import { LocationList } from './LocationList';
 
 export const Dashboard = () => {
   return (
-    <div>
+    <PageContainer>
       <header>
         <h1>Dashboard</h1>
       </header>
 
-      <section>
-        <h2>Locations</h2>
-
+      <SectionContainer>
         <LocationList />
-      </section>
-    </div>
+      </SectionContainer>
+    </PageContainer>
   );
 };

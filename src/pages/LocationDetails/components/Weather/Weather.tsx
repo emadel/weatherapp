@@ -2,6 +2,8 @@ import { HTMLAttributes } from 'react';
 
 import { LocationWeather } from '@/api/types';
 
+import { DD, DL, DT } from '../descriptionBlocks';
+
 interface Props extends HTMLAttributes<HTMLDListElement> {
   weather: LocationWeather['weather'];
 }
@@ -10,10 +12,10 @@ export const Weather = (props: Props) => {
   const { weather, ...dlProps } = props;
 
   return (
-    <dl {...dlProps}>
-      <dt>{weather?.main}</dt>
+    <DL {...dlProps}>
+      <DT visuallyHidden>Current conditions</DT>
 
-      <dd>{weather?.description}</dd>
-    </dl>
+      <DD>{weather?.main}</DD>
+    </DL>
   );
 };

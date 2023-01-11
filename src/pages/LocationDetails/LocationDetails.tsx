@@ -1,11 +1,10 @@
 import { useCurrentWeather, useReverseGeocoding } from '@/api/hooks';
 import { Units } from '@/api/types';
+import { PageContainer, SectionContainer } from '@/components';
 
-import { BackButton } from './BackButton';
-import { Surroundings } from './Surroundings';
-import { Temperatures } from './Temperatures';
+import { Header, Surroundings, Temperatures, Weather } from './components';
+import styles from './LocationDetails.module.css';
 import { useCoordinatesParams } from './useCoordinatesParams';
-import { Weather } from './Weather';
 
 export const LocationDetails = () => {
   const coordinates = useCoordinatesParams();
@@ -34,23 +33,21 @@ export const LocationDetails = () => {
   }
 
   return (
-    <div>
-      <header>
-        <BackButton />
+    <PageContainer>
+      <Header>{geoData.name}</Header>
 
-        <h1>{geoData.name}</h1>
-      </header>
+      <SectionContainer className={styles.container}>
+        <div className={styles.weatherBlock}>
+          <Weather weather={weatherData.weather} />
 
-      <section>
-        <Weather weather={weatherData.weather} />
-
-        <Temperatures
-          temperature={weatherData.temperature}
-          units={weatherData.units}
-        />
+          <Temperatures
+            temperature={weatherData.temperature}
+            units={weatherData.units}
+          />
+        </div>
 
         <Surroundings weatherData={weatherData} />
-      </section>
-    </div>
+      </SectionContainer>
+    </PageContainer>
   );
 };
