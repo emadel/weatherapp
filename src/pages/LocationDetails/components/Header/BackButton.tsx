@@ -1,15 +1,16 @@
+import { HTMLAttributes } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import styles from './BackButton.module.css';
+interface Props extends HTMLAttributes<HTMLButtonElement> {}
 
-export const BackButton = () => {
+export const BackButton = (props: Props) => {
   const navigate = useNavigate();
   const goBack = () => {
     navigate(-1);
   };
 
   return (
-    <button className={styles.back} onClick={goBack} title="Back">
+    <button onClick={goBack} title="Back" {...props}>
       &#8592;
     </button>
   );

@@ -11,9 +11,9 @@ export const Header = (props: Props) => {
 
   return (
     <header className={clsx(styles.header, className)} {...rest}>
-      <BackButton />
+      <BackButton className={styles.backButton} />
 
-      <h1>{children}</h1>
+      <h1 className={styles.heading}>{children}</h1>
     </header>
   );
 };

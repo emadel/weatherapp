@@ -4,8 +4,23 @@
     width: 100%;
 }
 
-.header > h1 {
+.heading {
     flex-grow: 1;
     display: flex;
     place-content: center;
+    margin-left: -4rem;
+    z-index: -1;
+}
+
+.backButton {
+    border-radius: 40px;
+    padding: 1rem;
+    background: inherit;
+    cursor: pointer;
+    font-size: 2rem;
+    border: 1px solid transparent;
+}
+
+.backButton:hover {
+    border: 1px solid lightgray;
 }
