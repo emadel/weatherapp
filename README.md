@@ -1,5 +1,26 @@
 # Handelsbanken Coding Challenge
 
+Basic version of the outlined Weather app, with limited functionality:
+
+- the locations to show weather for are static
+- loading state and any error messages from trying to fetch data is displayed in a very rudimentary fashion
+
+Applied very simple styling using CSS Modules – a designer would typically supply all the pizzaz. Verified that the
+Screen Reader experience is decent using Voice Over on OSX. 
+
+The app is built on top of react-query, to cache and update fetched data.
+
+There was no time left over to write tests, but I would have written one for each of the composing components, as they
+give most value. Mocking out the ReactQuery hooks, there should be tests for:
+
+- [pages/Dashboard/LocationList/Location](./src/pages/Dashboard/LocationList/Location/Location.tsx)
+- [pages/Dashboard](./src/pages/Dashboard/Dashboard.tsx)
+- [pages/LocationDetails/components/CurrentWeather](./src/pages/LocationDetails/components/CurrentWeather/CurrentWeather.tsx)
+- [pages/LocationDetails](./src/pages/LocationDetails/LocationDetails.tsx)
+
+For each tested component, you verify that the expected content is rendered at the different life phases (
+loading/error/success).
+
 # Setup
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) and customized
