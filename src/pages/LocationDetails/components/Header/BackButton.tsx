@@ -10,7 +10,7 @@ export const BackButton = (props: Props) => {
   };
 
   return (
-    <button onClick={goBack} title="Back" {...props}>
+    <button aria-label="Back" onClick={goBack} {...props}>
       &#8592;
     </button>
   );

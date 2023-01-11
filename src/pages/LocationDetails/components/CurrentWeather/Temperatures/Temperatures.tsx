@@ -22,7 +22,7 @@ export const Temperatures = (props: Props) => {
   return (
     <DL className={styles.grid} {...dlProps}>
       <div className={styles.current}>
-        <DT visuallyHidden>Current</DT>
+        <DT visuallyHidden>Current temperature</DT>
 
         <DD className={styles.current}>
           <Temperature temperature={current} units={units} />
