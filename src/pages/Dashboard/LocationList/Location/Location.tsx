@@ -1,8 +1,6 @@
-import { createSearchParams, Link } from 'react-router-dom';
-
-import { useCurrentWeather, useDirectGeocoding } from '@/api/hooks';
-import { GeoLocation, Units } from '@/api/types';
-import { Temperature } from '@/components';
+import { useDirectGeocoding } from '@/api/hooks';
+import { GeoLocation } from '@/api/types';
+import { CurrentWeatherLink } from '@/pages/Dashboard/LocationList/Location/CurrentWeatherLink';
 
 import styles from './Location.module.css';
 
@@ -13,47 +11,17 @@ interface Props {
 export const Location = (props: Props) => {
   const { location } = props;
 
-  const { data: geoData } = useDirectGeocoding(location, {
-    onError: (err) => {
-      // TODO capture in state for UI
-      console.error('Failed to fetch geo location', err);
-    },
-  });
+  const { data, error } = useDirectGeocoding(location);
 
-  const coordinates = geoData?.coordinates;
-
-  const { data: weatherData } = useCurrentWeather(
-    { coordinates, units: Units.METRIC },
-    {
-      enabled: !!coordinates,
-      onError: (err) => {
-        // TODO capture in state for UI
-        console.error('Failed to fetch location weather', err);
-      },
-    }
-  );
-
-  if (!coordinates) {
-    // TODO either loading or have error at this point - UI should reflect
-    return null;
+  if (data) {
+    return <CurrentWeatherLink location={data} />;
   }
 
-  return (
-    <Link
-      className={styles.location}
-      to={`location?${createSearchParams(Object.entries(coordinates))}`}
-    >
-      <span>{location.name}</span>
+  if (error) {
+    return (
+      <span className={styles.location}>Failed to look up {location.name}</span>
+    );
+  }
 
-      {weatherData && (
-        <>
-          <>&nbsp;</>
-          <Temperature
-            temperature={weatherData.temperature.current}
-            units={weatherData.units}
-          />
-        </>
-      )}
-    </Link>
-  );
+  return <span className={styles.location}>Loading....</span>;
 };

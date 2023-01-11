@@ -1,53 +1,36 @@
-import { useCurrentWeather, useReverseGeocoding } from '@/api/hooks';
-import { Units } from '@/api/types';
+import { useReverseGeocoding } from '@/api/hooks';
 import { PageContainer, SectionContainer } from '@/components';
 
-import { Header, Surroundings, Temperatures, Weather } from './components';
+import { CurrentWeather, Header } from './components';
 import styles from './LocationDetails.module.css';
 import { useCoordinatesParams } from './useCoordinatesParams';
 
 export const LocationDetails = () => {
   const coordinates = useCoordinatesParams();
 
-  const { data: geoData } = useReverseGeocoding(coordinates, {
-    onError: (err) => {
-      // TODO capture in state for UI
-      console.error('Failed to do reverse geocoding', err);
-    },
-  });
+  const { data, error } = useReverseGeocoding(coordinates, {});
 
-  const { data: weatherData } = useCurrentWeather(
-    { coordinates, units: Units.METRIC },
-    {
-      enabled: !!coordinates,
-      onError: (err) => {
-        // TODO capture in state for UI
-        console.error('Failed to fetch location weather', err);
-      },
-    }
-  );
+  if (data) {
+    return (
+      <PageContainer>
+        <Header>{data.name}</Header>
 
-  if (!geoData || !weatherData) {
-    // TODO either loading or have data fetch error at this point - UI should reflect
-    return null;
+        <SectionContainer className={styles.container}>
+          <CurrentWeather coordinates={coordinates} />
+        </SectionContainer>
+      </PageContainer>
+    );
   }
 
-  return (
-    <PageContainer>
-      <Header>{geoData.name}</Header>
+  if (error) {
+    return (
+      <PageContainer>
+        <p>Could not find a place matching the given coordinates.</p>
 
-      <SectionContainer className={styles.container}>
-        <div className={styles.weatherBlock}>
-          <Weather weather={weatherData.weather} />
+        <p>Server says {error.message}</p>
+      </PageContainer>
+    );
+  }
 
-          <Temperatures
-            temperature={weatherData.temperature}
-            units={weatherData.units}
-          />
-        </div>
-
-        <Surroundings weatherData={weatherData} />
-      </SectionContainer>
-    </PageContainer>
-  );
+  return <>Loading latest weather for location...</>;
 };
