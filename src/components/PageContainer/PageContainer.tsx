@@ -9,8 +9,8 @@ export const PageContainer = (props: Props) => {
   const { className, children, ...divProps } = props;
 
   return (
-    <div className={clsx(styles.container, className)} {...divProps}>
-      <div className={styles.content}>{children}</div>
+    <div className={styles.container} {...divProps}>
+      <div className={clsx(styles.content, className)}>{children}</div>
     </div>
   );
 };

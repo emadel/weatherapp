@@ -1,13 +1,12 @@
 .back {
     border-radius: 40px;
     padding: 1rem;
-    border: none;
     background: inherit;
     cursor: pointer;
     font-size: 2em;
     border: 1px solid transparent;
 }
 
-.back:hover{
+.back:hover {
     border: 1px solid lightgray;
 }
