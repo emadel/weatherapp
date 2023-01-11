@@ -14,8 +14,8 @@ type Options = UseQueryOptions<GeoLocation, AxiosError>;
 export const reverseGeocodingPath = ({ lat, lon }: Params) =>
   `geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=1`;
 
-export const useReverseGeocoding = (params: Params, options: Options) => {
-  const { retry, staleTime, ...otherOpts } = options;
+export const useReverseGeocoding = (params: Params, options?: Options) => {
+  const { staleTime, ...otherOpts } = options || {};
 
   return useQuery<GeoLocation, AxiosError>(
     [reverseGeocodingPath(params)],
@@ -26,7 +26,6 @@ export const useReverseGeocoding = (params: Params, options: Options) => {
     },
 
     {
-      retry: retry ?? false,
       staleTime: staleTime ?? Milliseconds.TEN_MINUTES,
       ...otherOpts,
     }

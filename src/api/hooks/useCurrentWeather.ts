@@ -26,8 +26,8 @@ export const locationWeatherPath = (params: Params) => {
   return `data/2.5/weather?lat=${lat}&lon=${lon}&units=${units}`;
 };
 
-export const useCurrentWeather = (params: Params, options: Options) => {
-  const { retry, enabled, staleTime, ...otherOpts } = options;
+export const useCurrentWeather = (params: Params, options?: Options) => {
+  const { enabled, staleTime, ...otherOpts } = options || {};
 
   return useQuery<LocationWeather, AxiosError>(
     [locationWeatherPath(params)],
@@ -38,7 +38,6 @@ export const useCurrentWeather = (params: Params, options: Options) => {
     },
 
     {
-      retry: retry ?? false,
       enabled: enabled ?? !!params.coordinates,
       staleTime: staleTime ?? Milliseconds.ONE_MINUTE,
       ...otherOpts,

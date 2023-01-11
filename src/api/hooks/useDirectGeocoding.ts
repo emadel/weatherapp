@@ -19,8 +19,8 @@ export const directGeocodingPath = (params: Params) => {
   return `geo/1.0/direct?q=${location}&limit=1`;
 };
 
-export const useDirectGeocoding = (params: Params, options: Options) => {
-  const { retry, staleTime, ...otherOpts } = options;
+export const useDirectGeocoding = (params: Params, options?: Options) => {
+  const { staleTime, ...otherOpts } = options || {};
 
   return useQuery<GeoLocation, AxiosError>(
     [directGeocodingPath(params)],
@@ -31,7 +31,6 @@ export const useDirectGeocoding = (params: Params, options: Options) => {
     },
 
     {
-      retry: retry ?? false,
       staleTime: staleTime ?? Milliseconds.TEN_MINUTES,
       ...otherOpts,
     }
