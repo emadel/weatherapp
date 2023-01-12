@@ -1,4 +1,4 @@
-# Handelsbanken Coding Challenge
+# WeatherApp Coding Challenge
 
 Basic version of the outlined Weather app, with limited functionality:
 
